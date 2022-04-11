@@ -1,0 +1,37 @@
+= DOCX search and replace
+
+With this tool, you can find and replace text in a docx file.
+
+== Let's start
+
+. Open the terminal.
+
+. Clone my `git clone https://github.com/Andronovss/docx-search-engine.git` repo in the empty dir in your FS.
+
+. Copy the new docx file to the */bin/* DIR.
+
+. Open and edit the *bin/find.bat* file if needed.
+
+* Let's look at this file:
++
+====
+#!/bin/sh
+
+    unzip PMI.docx <1>
+    -d tmp #unzip
+    sed -i '' -e "s/Table of Contents/Contents/g" <2>
+    tmp/word/document.xml <3>
+    #find/replace
+    cd tmp && zip -r ../PMI1.docx <4>
+     * && cd .. #zip
+    rm -rf tmp
+====
++
+<1> The script unpacks the specified docx file.
+<2> Here we indicate that we need to replace `Table of Contents` with `Contents`.
+<3> Where we will change. As you can see, sed changes the data in the already unpacked docx file.
+<4> There is a reverse packaging with the name of the new file. I recommend always creating a new file.
+
+. Run `cd {REPO_DIR_PATH}/bin`. This step is optional.
+
+. Run `find.bat`
